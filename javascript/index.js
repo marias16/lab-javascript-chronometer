@@ -39,42 +39,44 @@ function printMilliseconds() {
 }
 
 function printSplit() {
-  // ... your code goes here
+  splitsElement.innerHTML += `<li class="list-item">${chronometer.split()}</li>`;
 }
 
 function clearSplits() {
-  // ... your code goes here
+  chronometer.reset();
+  printTime;
+  splitsElement.innerHTML = '';
 }
 
 function setStopBtn() {
-  // ... your code goes here
+  btnLeftElement.className = 'btn stop';
+  btnLeftElement.innerHTML = 'STOP';
 }
 
 function setSplitBtn() {
-  // ... your code goes here
+  btnRightElement.className = 'btn split';
+  btnRightElement.innerHTML = 'SPLIT';
 }
 
 function setStartBtn() {
-  // ... your code goes here
+  btnLeftElement.className = 'btn start';
+  btnLeftElement.innerHTML = 'START';
 }
 
 function setResetBtn() {
-  // ... your code goes here
+  btnRightElement.className = 'btn reset';
+  btnRightElement.innerHTML = 'RESET';
 }
 // Start/Stop Button
 btnLeftElement.addEventListener('click', () => {
   if(btnLeftElement.className === 'btn start') {
-    btnLeftElement.className = 'btn stop';
-    btnLeftElement.innerHTML = 'STOP';
-    btnRightElement.className = 'btn split';
-    btnRightElement.innerHTML = 'SPLIT';
+    setStopBtn();
+    setSplitBtn();
     chronometer.start();
     chronometer.start(printTime);
   } else {
-    btnLeftElement.className = 'btn start';
-    btnLeftElement.innerHTML = 'START';
-    btnRightElement.className = 'btn reset';
-    btnRightElement.innerHTML = 'RESET';
+    setStartBtn();
+    setResetBtn();
     chronometer.stop();
   }
 });
@@ -83,8 +85,10 @@ btnLeftElement.addEventListener('click', () => {
 
 // Reset/Split Button
 btnRightElement.addEventListener('click', () => {
-  if (btnRightElement.className = 'btn split') {
-    splitsElement.innerHTML += `<li class="list-item">${chronometer.computeTwoDigitNumber(chronometer.getMinutes())}:${chronometer.computeTwoDigitNumber(chronometer.getSeconds())}</li>`;
+  if (btnRightElement.className === 'btn split') {
+    printSplit();
+  } else {
+    clearSplits();
   }
 });
 

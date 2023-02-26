@@ -37,11 +37,10 @@ class Chronometer {
 
   reset() {
     this.currentTime = 0;
-    document.querySelector(".number").innterHTML = 0;
   }
 
   split() {
-    return this.computeTwoDigitNumber(this.getMinutes) + ":" + this.computeTwoDigitNumber(this.getSeconds);
+    return `${this.computeTwoDigitNumber(this.getMinutes())} : ${this.computeTwoDigitNumber(this.getSeconds())}`;
   }
 }
 
